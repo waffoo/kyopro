@@ -7,6 +7,8 @@ using namespace std;
 
 #define FOR(i, a, b) for (int i = (a); i < (b); i++)
 #define rep(i, n) FOR(i, 0, n)
+#define repall(i, arr) for (auto i : (arr))
+#define all(x) (x).begin(), (x).end()
 #define pb push_back
 #define dump(x) cerr << #x << " = " << (x) << '\n'
 template <typename Arg>
