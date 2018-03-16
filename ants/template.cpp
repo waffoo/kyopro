@@ -12,6 +12,10 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define pb push_back
 #define dump(x) cerr << #x << " = " << (x) << '\n'
+template <typename T>
+void print(const vector<vector<T>> matrix);
+template <typename T>
+void print(const vector<T> vec);
 template <typename Arg>
 void print(Arg arg);
 template <typename Head, typename... Args>
@@ -33,4 +37,15 @@ template <typename Head, typename... Args>
 void print(Head head, Args... args) {
     cout << head << " ";
     print(args...);
+}
+
+template <typename T>
+void print(const vector<vector<T>> matrix) {
+    repall(vec, matrix) print(vec);
+}
+
+template <typename T>
+void print(const vector<T> vec) {
+    repall(i, vec) cout << i << ' ';
+    cout << '\n';
 }
