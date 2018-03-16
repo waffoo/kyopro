@@ -17,9 +17,9 @@ void print(const vector<vector<T>> matrix);
 template <typename T>
 void print(const vector<T> vec);
 template <typename Arg>
-void print(Arg arg);
+void print(const Arg arg);
 template <typename Head, typename... Args>
-void print(Head head, Args... args);
+void print(const Head head, const Args... args);
 const int INF = INT_MAX / 2;
 
 int main() {
@@ -28,24 +28,21 @@ int main() {
 }
 
 //---------------------------------------------
-template <typename Arg>
-void print(Arg arg) {
-    cout << arg << '\n';
-}
-
-template <typename Head, typename... Args>
-void print(Head head, Args... args) {
-    cout << head << " ";
-    print(args...);
-}
-
 template <typename T>
 void print(const vector<vector<T>> matrix) {
     repall(vec, matrix) print(vec);
 }
-
 template <typename T>
 void print(const vector<T> vec) {
     repall(i, vec) cout << i << ' ';
     cout << '\n';
+}
+template <typename Arg>
+void print(const Arg arg) {
+    cout << arg << '\n';
+}
+template <typename Head, typename... Args>
+void print(const Head head, const Args... args) {
+    cout << head << " ";
+    print(args...);
 }
