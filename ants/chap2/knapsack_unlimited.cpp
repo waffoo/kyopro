@@ -1,8 +1,5 @@
-#include <algorithm>
 #include <climits>
 #include <iostream>
-#include <queue>
-#include <utility>
 #include <vector>
 using namespace std;
 
@@ -23,9 +20,30 @@ template <typename Head, typename... Args>
 void print(const Head head, const Args... args);
 const int INF = INT_MAX / 2;
 
+struct Obj {
+    int weight, value;
+    Obj(int w, int v) : weight(w), value(v) {}
+};
+
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
+
+    int n, w, v, lim;
+    vector<Obj> goods{Obj(0, 0)};
+    cin >> n;
+    rep (i, n) {
+        cin >> w >> v;
+        goods.pb(Obj(w, v));
+    }
+    cin >> lim;
+    vector<int> dp(lim + 1, 0);
+
+    FOR (i, 1, n + 1)
+        FOR (j, goods[i].weight, lim + 1)
+            dp[j] = max(dp[j], dp[j - goods[i].weight] + goods[i].value);
+
+    print(dp[lim]);
 }
 
 //---------------------------------------------
