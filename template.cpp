@@ -26,6 +26,8 @@ const int INF = INT_MAX / 2;
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
+
+    return 0;
 }
 
 //---------------------------------------------
