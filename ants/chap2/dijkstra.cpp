@@ -33,6 +33,7 @@ struct Edge {
 };
 
 int node(char c) { return c - 'A'; }
+char node(int n) { return 'A' + n; }
 
 int main() {
     cin.tie(0);
@@ -43,6 +44,7 @@ int main() {
     cin >> V >> start >> goal;
     vector<vector<Edge>> adj(V);  // adjacency list
     vector<int> dis(V, INF);
+    vector<int> prev(V, -1);
     typedef pair<int, int> P;  // first: distance; second: edge num
 
     pqr<P> q;
@@ -62,12 +64,19 @@ int main() {
         repall (e, adj[v]) {
             if (dis[e.to] > dis[v] + e.cost) {
                 dis[e.to] = dis[v] + e.cost;
+                prev[e.to] = v;
                 q.push({dis[e.to], e.to});
             }
         }
     }
 
     print(dis[node(goal)]);
+
+    // trace path
+    vector<char> path;
+    for (int now = node(goal); now != -1; now = prev[now]) path.pb(node(now));
+    reverse(all(path));
+    print("path:", path);
 
     return 0;
 }
