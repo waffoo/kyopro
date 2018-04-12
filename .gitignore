@@ -2,4 +2,6 @@ a.out
 input*
 hoge.cpp
 secret/
+*.txt
+*.gdb_history
 .vscode/

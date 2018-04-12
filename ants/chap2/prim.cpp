@@ -28,34 +28,37 @@ template <typename T>
 using pqr = priority_queue<T, vector<T>, greater<T>>;
 const int INF = INT_MAX / 2;
 
+struct Edge {
+    int cost, to;
+};
+
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
     int V;  // num of nodes
     cin >> V;
-    vector<vector<int>> cost(V, vector<int>(V, INF));
-    vector<int> mincost(V, INF);
     vector<bool> used(V, false);
-    mincost[0] = 0;
-    int ans = 0;
-    int from, to, weight;
+    int ans = 0, from, to, cost;
+    vector<vector<Edge>> adj(V);
+    typedef pair<int, int> P;  // first: distance, second: edge num
+    pqr<P> q;
+    q.push({0, 0});
 
-    while (cin >> from >> to >> weight)
-        cost[from][to] = cost[to][from] = weight;
+    while (cin >> from >> to >> cost) {
+        adj[from].pb(Edge{cost, to});
+        adj[to].pb(Edge{cost, from});
+    }
 
-    while (true) {
-        int near = -1;
-        rep (i, V)
-            if (not used[i] and (near == -1 or mincost[i] < mincost[near]))
-                near = i;
+    while (not q.empty()) {
+        P p = q.top();
+        q.pop();
+        if (used[p.second]) continue;
 
-        if (near == -1) break;
-        used[near] = true;
-        ans += mincost[near];
-
-        rep (i, V)
-            mincost[i] = min(mincost[i], cost[near][i]);
+        used[p.second] = true;
+        ans += p.first;
+        repall (node, adj[p.second])
+            q.push({node.cost, node.to});
     }
 
     print("cost:", ans);
