@@ -1,12 +1,6 @@
-#include <algorithm>
-#include <climits>
-#include <iostream>
-#include <queue>
-#include <string>
-#include <utility>
-#include <vector>
-using namespace std;
+#include <bits/stdc++.h>
 
+using namespace std;
 #define FOR(i, a, b) for (int i = (a); i < static_cast<int>(b); i++)
 #define FORR(i, a, b) for (int i = (a); i >= static_cast<int>(b); i--)
 #define rep(i, n) FOR (i, 0, n)
@@ -27,6 +21,7 @@ using pq = priority_queue<T>;
 template <typename T>
 using pqr = priority_queue<T, vector<T>, greater<T>>;
 const int INF = INT_MAX / 2;
+using ll = long long;
 
 int main() {
     cin.tie(0);
