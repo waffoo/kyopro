@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+
 #define FOR(i, a, b) for (int i = (a); i < static_cast<int>(b); i++)
 #define FORR(i, a, b) for (int i = (a); i >= static_cast<int>(b); i--)
 #define rep(i, n) FOR (i, 0, n)
