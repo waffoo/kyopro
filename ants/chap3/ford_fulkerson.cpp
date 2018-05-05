@@ -10,7 +10,7 @@ using namespace std;
 #define pb push_back
 template <typename Arg>
 void print(const Arg arg);
-const int INF = INT_MAX / 2;
+constexpr int INF = INT_MAX / 2;
 
 struct Edge {
     int to, cap, rev;
