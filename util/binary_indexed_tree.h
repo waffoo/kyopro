@@ -9,11 +9,11 @@ class BIT {
 public:
     BIT(int max) : tree(max), MAX_SIZE(max) {}
     void add(int idx, int val) {
-        for (int x = a; x < MAX_SIZE; x += x & -x) tree[x] += w;
+        for (int x = idx; x < MAX_SIZE; x += x & -x) tree[x] += val;
     }
     int sum(int idx) {
         int ret = 0;
-        for (int x = a; x > 0; x -= x & -x) ret += tree[x];
+        for (int x = idx; x > 0; x -= x & -x) ret += tree[x];
         return ret;
     }
-}
+};
