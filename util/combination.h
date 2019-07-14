@@ -29,6 +29,10 @@ public:
         for (int i = 0; i < len; i++) rf[i] = inv(f[i]);
     }
     ll c(int n, int k) {
+        if (n < 0 or k < 0 or n - k < 0) {
+            std::cerr << "(n,k) = " << n << " " << k << std::endl;
+            exit(0);
+        }
         ll a = f[n];
         ll b = rf[n - k];
         ll c = rf[k];
