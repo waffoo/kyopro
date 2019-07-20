@@ -18,9 +18,11 @@ constexpr int MOD = 1e9 + 7;
 
 // clang-format off
 template<typename T>
-bool chmax(T& a, const T& b) {if (a<b){a=b;return true;}return false;}
+bool chmax(T& a, const T& b) { if (a < b) { a = b; return true; } return false; }
 template<typename T>
-bool chmin(T& a, const T& b) {if (a>b){a=b;return true;}return false;}
+bool chmin(T& a, const T& b) { if (a > b) { a = b; return true; } return false; }
+template <typename T>
+int index(const T& vec, const typename T::iterator it) { return distance(vec.begin(), it); }
 // clang-format on
 
 template <typename T>
