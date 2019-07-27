@@ -16,15 +16,6 @@ using namespace std;
 #define bit(n) (1LL << (n))
 constexpr int MOD = 1e9 + 7;
 
-// clang-format off
-template<typename T>
-bool chmax(T& a, const T& b) { if (a < b) { a = b; return true; } return false; }
-template<typename T>
-bool chmin(T& a, const T& b) { if (a > b) { a = b; return true; } return false; }
-template <typename T>
-int index(const T& vec, const typename T::iterator it) { return distance(vec.begin(), it); }
-// clang-format on
-
 template <typename T>
 using pq = priority_queue<T>;
 template <typename T>
@@ -32,7 +23,19 @@ using pqr = priority_queue<T, vector<T>, greater<T>>;
 const int INF = LLONG_MAX / 2;
 using P = pair<int, int>;
 using vec = vector<int>;
-using mat = vector<vec>;
+template <typename T>
+using mat = vector<vector<T>>;
+
+// clang-format off
+template<typename T>
+bool chmax(T& a, const T& b) { if (a < b) { a = b; return true; } return false; }
+template<typename T>
+bool chmin(T& a, const T& b) { if (a > b) { a = b; return true; } return false; }
+template <typename T>
+int index(const T& vec, const typename T::iterator it) { return distance(vec.begin(), it); }
+template <typename T = int>
+mat<T> mmat(int n, int m) { return mat<T>(n, vector<T>(m)); }
+// clang-format on
 
 template <typename T1, typename T2>
 ostream& operator<<(ostream& stream, const pair<T1, T2>& p) {
