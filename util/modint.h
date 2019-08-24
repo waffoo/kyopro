@@ -6,7 +6,7 @@ class mint {
     ll num;
 
 public:
-    mint(ll x = 0) : num(x) {}
+    mint(ll x = 0) : num(x % MOD) {}
     mint operator+=(const mint& x) noexcept {
         this->num += x.num;
         if (this->num >= MOD) this->num %= MOD;
