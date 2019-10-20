@@ -30,12 +30,32 @@ public:
         }
         return *this;
     }
+    mint operator%=(const mint& x) noexcept {
+        this->num %= x.num;
+        return *this;
+    }
     mint operator+(const mint& x) const noexcept { return mint(*this) += x; }
     mint operator-(const mint& x) const noexcept { return mint(*this) -= x; }
     mint operator*(const mint& x) const noexcept { return mint(*this) *= x; }
     mint operator/(const mint& x) const noexcept { return mint(*this) /= x; }
+    mint operator%(const mint& x) const noexcept { return mint(*this) %= x; }
+    mint operator&(const mint& x) const noexcept { return this->num & x.num; }
+    bool operator==(const mint& x) const noexcept { return this->num == x.num; }
+    bool operator!=(const mint& x) const noexcept { return not((*this) == x); }
+    explicit operator bool() const noexcept { return this->num != 0; }
+    explicit operator int() const noexcept { return this->num; }
 
     friend ostream& operator<<(ostream&, const mint&);
 };
 
 ostream& operator<<(ostream& stream, const mint& x) { return stream << x.num; }
+
+mint mpow(mint r, mint _n) {
+    mint re = 1;
+    int n = (int)_n;
+    for (; n; n /= 2) {
+        if (n & 1) re *= r;
+        r *= r;
+    }
+    return re;
+}
