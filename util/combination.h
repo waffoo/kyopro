@@ -1,43 +1,27 @@
 #pragma once
 #include <vector>
+#include "modint.h"
 
 class ModuloCombination {
     using ll = long long;
-    ll mod, len;
-    std::vector<ll> f, rf;
-
-    ll inv(ll x) {
-        ll res = 1;
-        ll k = mod - 2;
-        ll y = x;
-        while (k) {
-            if (k & 1) res = (res * y) % mod;
-            y = y * y % mod;
-            k /= 2;
-        }
-        return res;
-    }
+    ll len;
+    std::vector<mint> f, rf;
 
 public:
-    ModuloCombination(ll mod_, ll max_len = 101010)
-        : mod(mod_),
-          len(max_len + 1),
-          f(std::vector<ll>(len)),
-          rf(std::vector<ll>(len)) {
+    ModuloCombination(ll max_len = 10000010)
+        : len(max_len + 1),
+          f(std::vector<mint>(len)),
+          rf(std::vector<mint>(len)) {
         f[0] = 1;
-        for (int i = 0; i < len - 1; i++) f[i + 1] = f[i] * (i + 1) % mod;
-        for (int i = 0; i < len; i++) rf[i] = inv(f[i]);
+        for (int i = 0; i < len - 1; i++) f[i + 1] = f[i] * (i + 1);
+        rf[len - 1] = f[len - 1].inv();
+        for (int i = len - 2; i >= 0; i--) rf[i] = rf[i + 1] * (i + 1);
     }
-    ll c(int n, int k) {
+    mint c(ll n, ll k) {
         if (n < 0 or k < 0 or n - k < 0) {
             std::cerr << "(n,k) = " << n << " " << k << std::endl;
             exit(0);
         }
-        ll a = f[n];
-        ll b = rf[n - k];
-        ll c = rf[k];
-        ll bc = (b * c) % mod;
-        return (a * bc) % mod;
+        return f[n] * rf[n - k] * rf[k];
     }
-    ll getMod() { return mod; }
 };

@@ -45,17 +45,20 @@ public:
     explicit operator bool() const noexcept { return this->num != 0; }
     explicit operator int() const noexcept { return this->num; }
 
+    mint pow(mint _n) {
+        mint r = mint(*this);
+        mint re = 1;
+        int n = (int)_n;
+        for (; n; n /= 2) {
+            if (n & 1) re *= r;
+            r *= r;
+        }
+        return re;
+    }
+
+    mint inv() { return this->pow(MOD - 2); }
+
     friend ostream& operator<<(ostream&, const mint&);
 };
 
 ostream& operator<<(ostream& stream, const mint& x) { return stream << x.num; }
-
-mint mpow(mint r, mint _n) {
-    mint re = 1;
-    int n = (int)_n;
-    for (; n; n /= 2) {
-        if (n & 1) re *= r;
-        r *= r;
-    }
-    return re;
-}
